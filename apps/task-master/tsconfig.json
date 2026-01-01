@@ -1,0 +1,18 @@
+{
+  // 继承共享配置（你刚才上传的 react-library.json）
+  "extends": "@repo/typescript-config/react-library.json",
+
+  "compilerOptions": {
+    // 确保 Vite 的类型定义被加载（比如 import.meta.env）
+    "types": ["vite/client"],
+    "baseUrl": ".",
+    "declaration": false,
+    "declarationMap": false,
+    "outDir": "dist"
+  },
+
+  // 关键点：把所有需要检查的文件都包进来，解决 ESLint 找不到文件的问题
+  "include": ["src", "vite.config.ts", "eslint.config.js"],
+
+  "exclude": ["node_modules", "dist"]
+}
