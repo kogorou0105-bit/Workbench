@@ -1,27 +1,44 @@
 {
   "name": "@repo/ui",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "exports": {
-    "./*": "./src/*.tsx"
+    ".": "./src/index.tsx",
+    "./styles.css": "./dist/styles.css"
   },
   "scripts": {
+    "build": "tsup src/index.tsx --format cjs,esm --dts --minify --clean && pnpm run build:css",
+    "dev": "concurrently \"pnpm run dev:js\" \"pnpm run dev:css\"",
+    "dev:js": "tsup src/index.tsx --format cjs,esm --watch --dts",
+    "dev:css": "tailwindcss -i ./src/styles.css -o ./dist/styles.css --watch",
+    "build:css": "tailwindcss -i ./src/styles.css -o ./dist/styles.css --minify",
     "lint": "eslint . --max-warnings 0",
     "generate:component": "turbo gen react-component",
     "check-types": "tsc --noEmit"
   },
+  "peerDependencies": {
+    "react": ">=19.0.0",
+    "react-dom": ">=19.0.0"
+  },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
+    "@tailwindcss/cli": "^4.1.18",
     "@types/node": "^22.15.3",
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.2",
+    "concurrently": "^9.2.1",
     "eslint": "^9.39.1",
-    "tailwindcss": "^4.1.18",
-    "typescript": "5.9.2"
-  },
-  "dependencies": {
     "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "react-dom": "^19.2.0",
+    "tailwindcss": "^4.1.18",
+    "tsup": "^8.5.1",
+    "typescript": "5.9.2"
   }
 }

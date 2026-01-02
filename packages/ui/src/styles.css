@@ -1,0 +1,5 @@
+/* packages/ui/src/styles.css (v4 写法) */
+@import "tailwindcss";
+@theme {
+  --color-brand: #3b82f6; /* 定义主题变量 */
+}

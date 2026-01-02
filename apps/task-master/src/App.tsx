@@ -1,10 +1,5 @@
 import { useState } from "react";
-import { Button } from "@repo/ui/button";
-import { Card } from "@repo/ui/card";
-import { Badge } from "@repo/ui/badge";
-import { Column } from "@repo/ui/column";
-import { Input } from "@repo/ui/input"; // 假设你之前创建了 input 组件
-
+import { Button, Card, Badge, Column, Input } from "@repo/ui";
 // --- 模拟数据 ---
 const TASKS = [
   { id: "1", title: "Design System Draft", tag: "Design" },
@@ -29,7 +24,7 @@ const SidebarItem = ({
     flex items-center justify-between px-4 py-3 rounded-xl cursor-pointer transition-all
     ${
       active
-        ? "bg-white text-blue-600 shadow-[0_2px_0_#cbd5e1] font-bold translate-y-[-1px]"
+        ? "bg-white text-blue-600 shadow-[0_2px_0_#cbd5e1] font-bold -translate-y-px"
         : "text-slate-500 hover:bg-slate-200/50 hover:text-slate-700"
     }
   `}
