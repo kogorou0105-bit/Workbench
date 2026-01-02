@@ -1,27 +1,28 @@
-import { type JSX } from "react";
+import { ReactNode, HTMLAttributes } from "react";
 
-export function Card({
-  className,
-  title,
-  children,
-  href,
-}: {
-  className?: string;
-  title: string;
-  children: React.ReactNode;
-  href: string;
-}): JSX.Element {
-  return (
-    <a
-      className={className}
-      href={`${href}?utm_source=create-turbo&utm_medium=basic&utm_campaign=create-turbo"`}
-      rel="noopener noreferrer"
-      target="_blank"
-    >
-      <h2>
-        {title} <span>-&gt;</span>
-      </h2>
-      <p>{children}</p>
-    </a>
-  );
+interface CardProps extends HTMLAttributes<HTMLDivElement> {
+  children: ReactNode;
+  className?: string; // 允许外部微调布局
 }
+
+export const Card = ({ children, className = "", ...props }: CardProps) => {
+  return (
+    <div
+      className={`
+        bg-white 
+        rounded-2xl 
+        border-2 border-slate-200
+        p-4
+        shadow-[0_4px_0_#cbd5e1]
+        duration-200
+        hover:-translate-y-0.5 
+        hover:shadow-[0_6px_0_#cbd5e1]
+        transform-gpu
+        ${className}
+      `}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+};
